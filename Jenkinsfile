@@ -48,11 +48,13 @@ pipeline {
 
         stage('Test & Build Frontend') {
             steps {
-                dir('frontend') {
-                    sh 'npm ci --quiet'
-                    sh 'npm test -- --run'
-                    sh 'npm run build'
-                }
+                sh '''
+                    docker run --rm \
+                        -v ${WORKSPACE}/frontend:/app \
+                        -w /app \
+                        public.ecr.aws/docker/library/node:20-alpine \
+                        sh -c "npm ci --quiet && npm test -- --run && npm run build"
+                '''
             }
         }
 
