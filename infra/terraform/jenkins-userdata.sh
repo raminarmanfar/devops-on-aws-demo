@@ -59,14 +59,14 @@ GROOVY
 
 chown -R jenkins:jenkins /var/lib/jenkins/init.groovy.d /etc/sysconfig/jenkins 2>/dev/null || true
 
-# ── Start Jenkins ──────────────────────────────────────────────────────────────
-systemctl enable jenkins
-systemctl start jenkins
-
-# ── Docker ─────────────────────────────────────────────────────────────────────
+# ── Docker (must be installed and jenkins added to group BEFORE Jenkins starts) ─
 dnf install -y docker
 systemctl enable --now docker
 usermod -aG docker jenkins
+
+# ── Start Jenkins ──────────────────────────────────────────────────────────────
+systemctl enable jenkins
+systemctl start jenkins
 
 # ── kubectl ────────────────────────────────────────────────────────────────────
 KUBECTL_VERSION=$(curl -sL https://dl.k8s.io/release/stable.txt)
