@@ -34,6 +34,12 @@ provider "aws" {
   }
 }
 
+# Alias used for resources that don't support iam:TagInstanceProfile
+provider "aws" {
+  alias  = "notags"
+  region = var.aws_region
+}
+
 # EKS auth token for Helm / Kubernetes providers
 data "aws_eks_cluster_auth" "main" {
   name = aws_eks_cluster.main.name

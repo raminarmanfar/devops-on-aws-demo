@@ -85,6 +85,7 @@ resource "aws_iam_role_policy" "jenkins_eks" {
 }
 
 resource "aws_iam_instance_profile" "jenkins" {
-  name = "${var.project_name}-jenkins-profile"
-  role = aws_iam_role.jenkins.name
+  provider = aws.notags
+  name     = "${var.project_name}-jenkins-profile"
+  role     = aws_iam_role.jenkins.name
 }

@@ -2,7 +2,7 @@
 
 resource "aws_security_group" "jenkins" {
   name        = "${var.project_name}-jenkins-sg"
-  description = "Jenkins CI server – web UI and SSH"
+  description = "Jenkins CI server - web UI and SSH"
   vpc_id      = aws_vpc.main.id
 
   ingress {
@@ -57,5 +57,5 @@ resource "aws_security_group_rule" "eks_api_from_jenkins" {
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.jenkins.id
   security_group_id        = aws_security_group.eks_cluster.id
-  description              = "Jenkins → EKS API"
+  description              = "Jenkins to EKS API"
 }
