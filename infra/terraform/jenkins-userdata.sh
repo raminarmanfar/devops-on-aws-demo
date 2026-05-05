@@ -9,7 +9,7 @@ dnf update -y
 dnf install -y java-17-amazon-corretto-headless git
 
 # ── Jenkins ────────────────────────────────────────────────────────────────────
-wget -O /etc/yum.repos.d/jenkins.repo \
+curl -o /etc/yum.repos.d/jenkins.repo \
     https://pkg.jenkins.io/redhat-stable/jenkins.repo
 rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 dnf install -y jenkins
@@ -28,6 +28,9 @@ chmod +x /usr/local/bin/kubectl
 
 # ── AWS CLI (already present on AL2023, ensure latest) ────────────────────────
 dnf install -y aws-cli
+
+# ── SSM Agent (pre-installed on AL2023, ensure running) ───────────────────────
+systemctl enable --now amazon-ssm-agent || true
 
 # ── Configure kubectl for EKS ──────────────────────────────────────────────────
 # The instance role gives Jenkins permission to call eks:DescribeCluster

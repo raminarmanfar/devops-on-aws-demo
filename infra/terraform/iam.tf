@@ -69,6 +69,12 @@ resource "aws_iam_role_policy_attachment" "jenkins_ecr" {
   role       = aws_iam_role.jenkins.name
 }
 
+# SSM Session Manager access (no SSH key needed)
+resource "aws_iam_role_policy_attachment" "jenkins_ssm" {
+  policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  role       = aws_iam_role.jenkins.name
+}
+
 # Describe EKS cluster so Jenkins can run kubectl
 resource "aws_iam_role_policy" "jenkins_eks" {
   name = "${var.project_name}-jenkins-eks-policy"
