@@ -6,7 +6,9 @@
     "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"    "test:ci": "ng test --watch=false",  },
+    "test": "ng test",
+    "test:ci": "ng test --watch=false"
+  },
   "private": true,
   "packageManager": "npm@11.12.1",
   "dependencies": {
