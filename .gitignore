@@ -1,0 +1,26 @@
+# ── Terraform ────────────────────────────────────────────────────────────────
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*.tfplan
+*.tfvars
+!*.tfvars.example
+
+# ── Java / Maven ──────────────────────────────────────────────────────────────
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# ── Node / Angular ────────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+
+# ── OS / IDE ──────────────────────────────────────────────────────────────────
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
