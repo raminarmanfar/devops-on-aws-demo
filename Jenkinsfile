@@ -46,6 +46,16 @@ pipeline {
             }
         }
 
+        stage('Test & Build Frontend') {
+            steps {
+                dir('frontend') {
+                    sh 'npm ci --quiet'
+                    sh 'npm test -- --run'
+                    sh 'npm run build'
+                }
+            }
+        }
+
         stage('Login to ECR') {
             steps {
                 sh '''
