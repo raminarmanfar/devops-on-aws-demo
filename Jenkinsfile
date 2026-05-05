@@ -53,7 +53,7 @@ pipeline {
                         -v ${WORKSPACE}/frontend:/app \
                         -w /app \
                         public.ecr.aws/docker/library/node:20-alpine \
-                        sh -c "npm ci --quiet && npm test -- --run && npm run build"
+                        sh -c "npm ci --quiet && npm run test:ci && npm run build"
                 '''
             }
         }
