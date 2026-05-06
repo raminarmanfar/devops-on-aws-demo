@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: 405635876994.dkr.ecr.eu-central-1.amazonaws.com/devops-demo/backend:5ba6e61
+          image: 405635876994.dkr.ecr.eu-central-1.amazonaws.com/devops-demo/backend:78ad4c2
           ports:
             - containerPort: 3000
           resources:
