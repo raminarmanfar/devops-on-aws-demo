@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(false)
+    }
+
     environment {
         AWS_REGION      = 'eu-central-1'
         BACKEND_REPO    = 'devops-demo/backend'
@@ -9,6 +13,18 @@ pipeline {
     }
 
     stages {
+
+        stage('Check commit') {
+            steps {
+                script {
+                    def msg = sh(script: 'git log -1 --pretty=%s', returnStdout: true).trim()
+                    if (msg.contains('[skip ci]')) {
+                        currentBuild.result = 'NOT_BUILT'
+                        error("Skipping CI: commit message contains [skip ci]")
+                    }
+                }
+            }
+        }
 
         stage('Setup') {
             steps {
